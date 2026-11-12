@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alicia Villarreal Villacrés · UX/UI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Figtree:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>:root{
+  --rosa:#F4E1DE; --rosa-deep:#EDD3CF; --frame:#FBEFED; --ink:#1D2B5C; --ink-soft:#4B567C;
+  --green:#00A060; --green-text:#00764A; --rule:#E2C9C5; --tag:#FFFFFF8C;
+  --measure:36rem; color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --rosa:#141B38; --rosa-deep:#1C2547; --frame:#202A50; --ink:#F4E1DE; --ink-soft:#C9BFC9;
+  --green:#2BD38C; --green-text:#4FDB9D; --rule:#2C3660; --tag:#FFFFFF14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --rosa:#141B38; --rosa-deep:#1C2547; --frame:#202A50; --ink:#F4E1DE; --ink-soft:#C9BFC9;
+  --green:#2BD38C; --green-text:#4FDB9D; --rule:#2C3660; --tag:#FFFFFF14; color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 5rem);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--rosa);color:var(--ink);font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.125rem;line-height:1.7}
+h1,h2,h3{font-family:"Outfit","Figtree",system-ui,sans-serif;margin:0;line-height:1.08;letter-spacing:-.02em}
+p{margin:0 0 1rem}
+a{color:var(--ink);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:focus-visible{outline:3px solid var(--green);outline-offset:4px;border-radius:4px}
+.wrap{max-width:70rem;margin:0 auto;padding-left:clamp(1.5rem,5vw,3rem);padding-right:clamp(1.5rem,5vw,3rem)}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--rosa)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--rosa)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:4.5rem}
+.logo{font-family:"Outfit",sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:.01em;text-decoration:none}
+nav.main{display:flex;gap:1.75rem}
+nav.main a{text-decoration:none;font-size:.98rem;font-weight:500;color:var(--ink-soft);padding:.4rem 0;border-bottom:1.5px solid transparent}
+nav.main a:hover{color:var(--ink)}
+nav.main a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--green)}
+
+.view{display:none}.view.on{display:block}
+
+/* hero: light against bold, lots of air */
+.hero{padding-top:clamp(5rem,14vw,10rem);padding-bottom:clamp(5rem,12vw,9rem)}
+.questions{font-weight:300;font-size:clamp(3rem,9vw,7.25rem);letter-spacing:-.04em;line-height:1}
+.questions span{display:block}
+.questions .strong{font-weight:700}
+.hero-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:2rem;margin-top:clamp(3rem,7vw,5rem)}
+.hero-foot .lead{max-width:30rem;margin:0}
+.lead{font-size:1.2rem;line-height:1.6;color:var(--ink-soft)}
+.btn{display:inline-block;background:var(--green);color:#FFFFFF;font-weight:700;font-size:1rem;padding:.9rem 1.5rem;border-radius:999px;text-decoration:none}
+.btn:hover{filter:brightness(.95)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+
+.block{padding-top:clamp(4rem,9vw,7rem);padding-bottom:clamp(4rem,9vw,7rem)}
+.section-title{font-weight:300;font-size:clamp(2rem,4vw,3rem);margin-bottom:clamp(2.5rem,6vw,4rem)}
+
+/* work rows */
+.grid{display:flex;flex-direction:column;gap:clamp(4rem,9vw,7rem)}
+.proj{display:grid;gap:1.75rem 4rem;align-items:center;text-decoration:none;color:var(--ink)}
+@media(min-width:56rem){.proj{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.proj:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}.proj:nth-child(even) .cover{order:2}}
+.proj .cover{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--frame);border-radius:18px;padding:clamp(1rem,3vw,2rem);transition:transform .3s ease}
+.proj:hover .cover{transform:scale(1.015)}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tag{font-size:.85rem;font-weight:500;padding:.25rem .8rem;border-radius:999px;border:1px solid var(--rule);color:var(--ink-soft)}
+.proj h3{font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.12;margin-bottom:.75rem}
+.proj p{color:var(--ink-soft);margin:0}
+.proj .key{margin-top:1.1rem;color:var(--green-text);font-weight:700}
+
+.do{display:grid;gap:2.5rem 4rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.do h3{font-weight:600;font-size:1.3rem;margin-bottom:.5rem}
+.do p{color:var(--ink-soft);margin:0;font-size:1.05rem}
+
+/* case */
+.back{display:inline-block;margin-top:2.5rem;font-size:.98rem;font-weight:500;color:var(--ink-soft);text-decoration:none}
+.back::before{content:"‹ "}
+.case-head{padding:clamp(3rem,8vw,5.5rem) 0 clamp(2rem,5vw,3rem);max-width:50rem}
+.case-head h1{font-weight:300;font-size:clamp(2.5rem,6.4vw,4.8rem);letter-spacing:-.035em;line-height:1.02;margin-bottom:1.75rem}
+.case-head .lead{max-width:34rem;font-size:1.3rem}
+.meta{display:grid;gap:1.5rem 3rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));padding:1.75rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.meta span{display:block;font-size:.9rem;color:var(--ink-soft);margin-bottom:.2rem}
+.meta b{font-weight:600;font-size:1.02rem;line-height:1.4;display:block}
+figure{margin:0}
+.hero-fig{margin:clamp(3rem,7vw,5rem) 0 0}
+.shot{display:block;max-width:100%;width:auto;height:auto;max-height:min(80vh,46rem);margin:0 auto;border-radius:16px;background:var(--frame);padding:clamp(.75rem,2vw,1.25rem)}
+figure .shot{box-sizing:border-box}
+figcaption{font-size:.95rem;color:var(--ink-soft);margin-top:.75rem;text-align:center}
+.act{padding-top:clamp(5rem,11vw,8rem)}
+.act-label{font-size:.95rem;font-weight:700;color:var(--green-text);margin-bottom:.75rem}
+.act h2{font-weight:600;font-size:clamp(1.9rem,3.8vw,2.8rem);max-width:34rem;margin-bottom:1.5rem}
+.act-text{max-width:var(--measure)}
+.act-text p{font-size:1.15rem}
+.act figure,.act > p{margin-top:clamp(2.5rem,6vw,3.5rem)}
+.stats{display:flex;flex-wrap:wrap;gap:2rem 4rem;margin:.5rem 0 0}
+.stat b{display:block;font-family:"Outfit",sans-serif;font-weight:300;font-size:clamp(2.8rem,6vw,4.25rem);letter-spacing:-.03em;line-height:1;margin-bottom:.6rem;color:var(--ink)}
+.stat:first-child b{color:var(--green)}
+.stat span{display:block;max-width:14rem;color:var(--ink-soft);font-size:1rem;line-height:1.45}
+.next{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:clamp(6rem,12vw,9rem);padding:2.5rem 0 4rem;border-top:1px solid var(--rule)}
+.next a{text-decoration:none;font-family:"Outfit",sans-serif;font-weight:600;font-size:clamp(1.2rem,2.4vw,1.6rem)}
+.next a span{display:block;font-family:"Figtree",sans-serif;font-weight:500;font-size:.9rem;color:var(--ink-soft);margin-bottom:.3rem}
+.next a.r{text-align:right}
+
+.about,.contact-page{padding-top:clamp(4rem,10vw,7rem);padding-bottom:clamp(4rem,10vw,7rem)}
+.about h1,.contact-page h1{font-weight:300;font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:-.035em;max-width:48rem;margin-bottom:2.5rem}
+.about-text{max-width:var(--measure);margin-bottom:clamp(4rem,9vw,6rem)}
+.about-text p{font-size:1.15rem}
+.contact{display:flex;flex-wrap:wrap;gap:.75rem 2rem;font-weight:600}
+footer{border-top:1px solid var(--rule)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-top:2rem;padding-bottom:2.5rem;color:var(--ink-soft);font-size:.95rem}
+@media(prefers-reduced-motion:no-preference){
+ .view.on .questions span{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+ .view.on .questions span:nth-child(2){animation-delay:.12s}
+ .view.on .questions span:nth-child(3){animation-delay:.24s}
+ @keyframes rise{from{opacity:0;transform:translateY(.15em)}to{opacity:1;transform:none}}
+}
+@media(prefers-reduced-motion:reduce){.proj .cover{transition:none}}
+@media(max-width:40rem){nav.main{gap:1.1rem}.next{grid-template-columns:1fr}.next a.r{text-align:left}}
+.after{margin-top:1.75rem;max-width:var(--measure);font-size:1.15rem}
+.cta-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem;margin-top:clamp(4rem,9vw,6rem);padding:clamp(1.75rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem);background:var(--frame);border-radius:20px}
+.cta-band p{margin:0;font-family:"Outfit",sans-serif;font-weight:300;font-size:clamp(1.4rem,3vw,2rem);line-height:1.2;max-width:32rem}
+.contact-grid{display:grid;gap:3rem 5rem;margin-top:clamp(2.5rem,6vw,4rem)}
+@media(min-width:56rem){.contact-grid{grid-template-columns:1.2fr 1fr}}
+.form{display:grid;gap:1.25rem;max-width:34rem}
+.form label{display:grid;gap:.45rem;font-weight:600;font-size:1rem}
+.form input,.form select,.form textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--frame);border:1.5px solid var(--rule);border-radius:12px;padding:.8rem 1rem;width:100%}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 25%,transparent)}
+.form .btn{justify-self:start;border:0;cursor:pointer}
+.form-note{font-size:.95rem;color:var(--ink-soft);margin:0}
+.direct h2{font-weight:600;font-size:1.4rem;margin-bottom:1.5rem}
+.direct-link{display:block;text-decoration:none;font-weight:600;font-size:1.1rem;padding:1rem 0;border-top:1px solid var(--rule)}
+.direct-link span{display:block;font-weight:500;font-size:.9rem;color:var(--ink-soft)}
+.direct-link:hover{color:var(--green-text)}
+.tz{margin-top:1.5rem;color:var(--ink-soft);font-size:1rem}
+.contact-page .lead{max-width:36rem}
+.hello{display:flex;gap:1.25rem;align-items:flex-start;max-width:36rem}
+.avatar{width:4.5rem;height:4.5rem;border-radius:50%;object-fit:cover;flex:none}
+.about-head{display:grid;gap:2.5rem;align-items:end;margin-bottom:clamp(3rem,7vw,5rem)}
+@media(min-width:56rem){.about-head{grid-template-columns:1.4fr 1fr}}
+.about-head h1{margin-bottom:0}
+.portrait{width:100%;max-width:26rem;height:auto;border-radius:20px;display:block}
+.cta-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.ptabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 4.5rem);z-index:8;background:var(--rosa);border-bottom:1px solid var(--rule)}
+.ptabs-in{display:flex;gap:1.5rem;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.ptabs-in::-webkit-scrollbar{display:none}
+.ptabs a{flex:none;text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.ptabs a:hover{color:var(--ink)}
+.ptabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--green);font-weight:700}
+.summary{display:grid;gap:1.5rem 3rem;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));background:var(--frame);border-radius:20px;padding:clamp(1.5rem,4vw,2.25rem);margin-bottom:2.5rem}
+.summary span{display:block;font-size:.9rem;font-weight:700;color:var(--green-text);margin-bottom:.4rem}
+.summary p{margin:0;font-size:1.05rem;line-height:1.5}
+.act-text ul{padding-left:1.2rem;margin:0}
+.act-text li{margin-bottom:.75rem;font-size:1.08rem}
+.act-text li::marker{color:var(--green)}
+.cv{padding-top:clamp(4rem,9vw,6rem);padding-bottom:clamp(3rem,7vw,5rem)}
+.cv-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem;margin-bottom:clamp(3rem,7vw,4.5rem)}
+.cv-head h1{font-weight:300;font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:-.035em}
+.cv-sec{padding-top:clamp(2.5rem,6vw,3.5rem);border-top:1px solid var(--rule);margin-top:clamp(2.5rem,6vw,3.5rem)}
+.cv-sec h2{font-weight:600;font-size:1.5rem;margin-bottom:1.75rem}
+.tl{list-style:none;margin:0;padding:0;display:grid;gap:2rem}
+.tl li{display:grid;gap:.35rem 2.5rem}
+@media(min-width:48rem){.tl li{grid-template-columns:11rem 1fr}}
+.tl .when{color:var(--ink-soft);font-size:.98rem;padding-top:.15rem}
+.tl h3{font-weight:600;font-size:1.25rem;line-height:1.25}
+.tl .org{color:var(--green-text);font-weight:600;margin:.2rem 0 .5rem}
+.tl p{margin:0;max-width:var(--measure);font-size:1.05rem}
+.tl .org+p{margin-top:.25rem}
+.plain{list-style:none;margin:0;padding:0;display:grid;gap:1.25rem}
+.plain b{display:block;font-weight:600}
+.plain span{color:var(--ink-soft);font-size:1rem}
+.two-col{display:grid;gap:2rem 4rem}
+@media(min-width:48rem){.two-col{grid-template-columns:1fr 1fr}}
+.two-col p{max-width:var(--measure)}
+.gallery{display:grid;gap:clamp(1.5rem,4vw,2.5rem);margin-top:clamp(2.5rem,6vw,3.5rem)}@media(min-width:56rem){.gallery{grid-template-columns:1fr 1fr}}.gallery figure{margin:0}
+</style></head>
+<body>
+<header class="top"><div class="wrap bar">
+<a class="logo" href="#">Alicia Villarreal</a>
+<nav class="main" aria-label="Main"><a href="#" data-nav="home">Work</a><a href="#about" data-nav="about">About</a><a href="#cv" data-nav="cv">CV</a><a href="#contact" data-nav="contact">Contact</a></nav>
+</div></header>
+<main>
+<div class="view" id="v-home">
+ <section class="wrap hero">
+  <h1 class="questions" aria-label="What for? For whom? Where will it be used?"><span>What for?</span><span>For whom?</span><span class="strong">Where will it be used?</span></h1>
+  <div class="hero-foot">
+   <div class="hello"><img class="avatar" src="img/5688a784ce.jpg" alt="Alicia Villarreal" loading="lazy"><p class="lead">Hi, I’m Alicia. I’ve spent 16 years asking slightly annoying questions before anyone opens Figma. It’s how complex products end up feeling simple, and how people end up deciding on purpose.</p></div>
+   <a class="btn" href="#work">See my work</a>
+  </div>
+ </section>
+ <section class="wrap block" id="work">
+  <h2 class="section-title">Selected work</h2>
+  <div class="grid"><a class="proj" href="#pichincha-behavior"><img class="cover" src="img/37658f7e84.jpg" alt="Insurance people choose on purpose" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Behavioral design</span></div><h3>Insurance people choose on purpose</h3><p>94% of loans left without insurance. Nobody was saying no. Nobody was seeing it.</p><p class="key">24 → 52 daily sales</p></div></a>
+<a class="proj" href="#pichincha-insurance"><img class="cover" src="img/b32fc5b41e.jpg" alt="An insurance hub inside a banking app" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Product design</span></div><h3>An insurance hub inside a banking app</h3><p>Where would you look for insurance in your banking app? We asked 40 people.</p><p class="key">+37% policy sales</p></div></a>
+<a class="proj" href="#pichincha-meta"><img class="cover" src="img/meta-picnic.jpg" alt="Plan de Salud ad campaign" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Content strategy</span></div><h3>Everyday moments, not tragedies</h3><p>Selling a health plan on Meta without fear: people you recognize, moments you’ve lived.</p><p class="key">0.59% vs 0.17% conversion</p></div></a>
+<a class="proj" href="#toyota"><img class="cover" src="img/10f8a3d4c5.jpg" alt="A website built around how people choose a car" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Automotive</span><span class="tag alt">Research and IA</span></div><h3>A website built around how people choose a car</h3><p>Before drawing a single box, we asked drivers how they actually choose.</p><p class="key">56 survey and 21 card sorting participants</p></div></a>
+<a class="proj" href="#bgr"><img class="cover" src="img/27f3b4743e.jpg" alt="A bank website redesigned with its people" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Research, UX and UI</span></div><h3>A bank website redesigned with its people</h3><p>137K visits a month and almost no leads. Busy, but not working.</p><p class="key">50+ usability errors diagnosed</p></div></a>
+<a class="proj" href="#lutz-law"><img class="cover" src="img/4a9a63cf32.jpg" alt="Would strangers hire this law firm online?" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Legal services</span><span class="tag alt">Research and WordPress</span></div><h3>Would strangers hire this law firm online?</h3><p>Clients loved them. New people couldn’t find a reason to call.</p><p class="key">NPS 100 among clients</p></div></a>
+<a class="proj" href="#telefonica"><img class="cover" src="img/1cdf379227.jpg" alt="Two new mobile brands, one self-service system" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Telecom</span><span class="tag alt">UX, UI and front-end</span></div><h3>Two new mobile brands, one self-service system</h3><p>Same tasks, two personalities. Building everything twice wasn’t an option.</p><p class="key">1 framework for 2 brands</p></div></a>
+<a class="proj" href="#usfq"><img class="cover" src="img/ed3e192a4f.jpg" alt="An MBA page that invites you to apply" loading="lazy"><div class="proj-body"><div class="tags"><span class="tag">Education</span><span class="tag alt">IA and conversion</span></div><h3>An MBA page that invites you to apply</h3><p>Everything a future student needed was there. You just had to dig for it.</p><p class="key">Before and after redesign</p></div></a></div>
+ </section>
+ <section class="wrap block">
+  <h2 class="section-title">What I’m good at</h2>
+  <div class="do">
+   <div><h3>Behavioral design</h3><p>I studied neuroscience to understand why people click, hesitate or quit. Now I design for that exact moment.</p></div>
+   <div><h3>Content strategy</h3><p>Words are interface. I write the copy, the microcopy and the structure that holds it all together.</p></div>
+   <div><h3>Research</h3><p>I’ll happily watch 25 session recordings so the team doesn’t have to guess.</p></div>
+   <div><h3>Product and service design</h3><p>From the first workshop to the developer handoff. I used to be the developer, so I know what’s buildable.</p></div>
+  </div>
+ <div class="cta-band"><p>Have a messy problem nobody has untangled yet?</p><a class="btn" href="#contact">Let’s talk</a></div>
+ </section>
+</div>
+
+<div class="view" id="v-about"><div class="wrap about">
+ <div class="about-head"><h1>Nerdy, intense, caring and maybe a bit annoying. Mostly about the work.</h1><img class="portrait" src="img/dd96fb679b.jpg" alt="Portrait of Alicia Villarreal" loading="lazy"></div>
+ <div class="about-text">
+  <p>I started as a developer, coding websites and games for brands. Clients would ask for a button and I’d ask why. Who is it for? Where will they use it? At some point the questions became the job.</p>
+  <p>Wunderman was where the questions got serious. It was my first real design challenge: every decision needed a reason, and I learned that something looking good, pretty or polished wasn’t enough to make it easy to use or to meet a goal. I carried that into my freelance years and then to Ariadna, where I grew from Senior UX Designer to Director of UX, working with telecom companies, car brands, retailers, universities, insurers and banks. I have a habit of diving so deep into a client’s business that I almost end up working there.</p>
+  <p>Then I wanted to know what actually happens in people’s heads when they decide, so I did a Master’s in Neuroscience and Neuromarketing. For the last five years I put it to work on Banco Pichincha’s mobile app, where behavioral design and content moved real sales.</p>
+  <p>Almost everything I know, I learned online, one course at a time. Now I’m back at it with a Master’s in Video Game Design, because few things change behavior like a good game, and I want to bring that, on purpose, to every industry.</p>
+ </div>
+ <h2 class="section-title">What I love</h2>
+ <div class="do">
+  <div><h3>Teaching</h3><p>Workshops in person and online, and that moment when a team suddenly gets it.</p></div>
+  <div><h3>Messy problems</h3><p>The kind nobody has untangled yet, with real people on the other side.</p></div>
+  <div><h3>Learning in public</h3><p>MOOCs changed my life. I’m still a student, and I hope I always am.</p></div>
+  <div><h3>Community</h3><p>I volunteered with Ladies that UX Quito, and I still love helping designers grow.</p></div>
+ </div>
+ <div class="cta-band"><p>Sounds like someone you’d like on your team?</p><div class="cta-actions"><a class="btn" href="#contact">Let’s talk</a><a class="btn ghost" href="https://www.linkedin.com/in/aavv7/" target="_blank" rel="noopener">Connect on LinkedIn</a></div></div>
+</div></div>
+
+<div class="view" id="v-cv"><div class="wrap cv">
+ <div class="cv-head"><h1>Curriculum vitae</h1><div class="cta-actions"><a class="btn" id="cv-dl" href="cv/Alicia_Villarreal_CV_EN.pdf" target="_blank" rel="noopener">Open CV as PDF</a><a class="btn ghost" href="https://www.linkedin.com/in/aavv7/" target="_blank" rel="noopener">Connect on LinkedIn</a></div></div>
+ <section class="cv-sec"><h2>Experience</h2>
+  <ol class="tl">
+   <li><span class="when">2023 – Jul 2026</span><div><h3>Senior UX, Content &amp; Behavioral Design Strategist</h3><p class="org">NOVA / Banco Pichincha</p><p>Behavioral interventions, content strategy and experimentation for the insurance portfolio in the mobile banking app. +37% policy sales in 2025 and USD 458K+ from digital self-service.</p></div></li>
+   <li><span class="when">Sep 2021 – 2023</span><div><h3>UX Specialist</h3><p class="org">NOVA / Banco Pichincha</p><p>The bank’s first self-service insurance flow, insurance embedded in credit, and 50+ experiments. A nudge that took daily sales from 24 to 52.</p></div></li>
+   <li><span class="when">Jun 2016 – Aug 2021</span><div><h3>Director of User Experience</h3><p class="org">Ariadna Communications Group</p><p>Joined as Senior UX Designer and went on to lead the UX practice. Research, product and service design for PwC, Movistar, Telefónica, Toyota, Kia, BGR and USFQ, among others.</p></div></li>
+   <li><span class="when">2021 – 2022</span><div><h3>Volunteer</h3><p class="org">Ladies that UX Quito</p></div></li>
+   <li><span class="when">Mar 2013 – Aug 2016</span><div><h3>UX Designer and Web, App and Game Developer</h3><p class="org">Freelance</p><p>Bringing UX thinking into every development project, before it had a name on my business card.</p></div></li>
+   <li><span class="when">Mar 2012 – Aug 2014</span><div><h3>Web Development Specialist</h3><p class="org">Wunderman</p><p>My first real design challenges: questioning the why behind each decision, and learning that looking good isn’t enough for something to be usable or to meet its goal.</p></div></li>
+   <li><span class="when">2008 – 2012</span><div><h3>Flash and Web Developer</h3><p class="org">BANG Studio, Acid Rain Media Lab, INTEGRAS, Media Enjoy</p></div></li>
+  </ol>
+ </section>
+ <section class="cv-sec"><h2>Education</h2>
+  <ul class="plain">
+   <li><b>Master’s in Video Game Design</b><span>Universidad Europea · online, in progress · Beca Mujer Ecuador scholarship</span></li>
+   <li><b>Master’s in Neuroscience and Neuromarketing</b><span>EIG / UIDE</span></li>
+   <li><b>Bachelor’s in Digital Arts, Web and Multimedia Design</b><span>Campus de Tecnologías Digitales</span></li>
+  </ul>
+ </section>
+ <section class="cv-sec"><h2>Programs and courses</h2>
+  <ul class="plain">
+   <li><b>UX Writing and Content Strategy</b><span>Shifta</span></li>
+   <li><b>Service Design · Leadership in the Digital Age</b><span>Colectivo23</span></li>
+   <li><b>Marketing Reboot</b><span>M.AD School of Ideas</span></li>
+   <li><b>Human-Computer Interaction, User Research, Gamification, Emotional Design and more</b><span>Coursera and Interaction Design Foundation</span></li>
+  </ul>
+ </section>
+ <section class="cv-sec two-col">
+  <div><h2>Tools</h2><p>Figma, Miro, Microsoft Clarity, Hotjar, Google Analytics, Axure RP, Marvel, WordPress, HTML, CSS and JavaScript. AI: Claude, ChatGPT and Microsoft Copilot.</p></div>
+  <div><h2>Languages</h2><p>Spanish, native. English, upper-intermediate (B2), in an intensive program toward C1.</p></div>
+ </section>
+</div></div>
+
+<div class="view" id="v-contact"><div class="wrap contact-page">
+ <h1>Let’s talk.</h1>
+ <p class="lead">Hiring, a project, a workshop, or a messy problem you’d like a second pair of eyes on. Tell me a bit and I’ll get back to you.</p>
+ <div class="contact-grid">
+  <form class="form" id="contact-form" action="https://formsubmit.co/andrea.villarreal.v@gmail.com" method="POST"><input type="hidden" name="_subject" value="New message from your portfolio"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value=""><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+   <label>Your name<input name="name" autocomplete="name" required></label>
+   <label>Your email<input name="email" type="email" autocomplete="email" required></label>
+   <label>What’s it about?
+    <select name="topic"><option>A full-time role</option><option>A project</option><option>A workshop or class</option><option>Just saying hi</option></select></label>
+   <label>Message<textarea name="message" rows="5" required></textarea></label>
+   <button class="btn" type="submit">Send message</button>
+   <p class="form-note" id="form-note" role="status">Your message goes straight to my inbox.</p>
+  </form>
+  <aside class="direct">
+   <h2>Or reach me directly</h2>
+   <a class="direct-link" href="https://wa.me/593995349228" target="_blank" rel="noopener"><span>WhatsApp</span>+593 99 534 9228</a>
+   <a class="direct-link" href="mailto:andrea.villarreal.v@gmail.com"><span>Email</span>andrea.villarreal.v@gmail.com</a>
+   <a class="direct-link" href="https://www.linkedin.com/in/aavv7/" target="_blank" rel="noopener"><span>LinkedIn, let’s connect</span>linkedin.com/in/aavv7</a>
+   <p class="tz">Based in Quito, Ecuador (GMT-5), on the same clock as US Eastern for most of the year. Spanish and English.</p>
+  </aside>
+ </div>
+</div></div>
+<div class="view" id="v-pichincha-behavior">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior" aria-current="page">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Behavioral design</span></div><h1>Insurance people choose on purpose</h1><p class="lead">Customers took a loan in the app, and 94% left without the insurance that came with it. The business wanted to know why. So did I.</p></header>
+<div class="summary"><div><span>The challenge</span><p>94% of loans were disbursed without the insurance offered with them.</p></div><div><span>My part</span><p>Research, behavioral design and content, with product, data and tech teams.</p></div><div><span>The result</span><p>Daily insurance sales went from 24 to 52.</p></div></div>
+<div class="meta"><div><span>Company</span><b>NOVA / Banco Pichincha</b></div><div><span>Platform</span><b>Mobile banking app</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/dc1a847bb0.jpg" alt="Conversion funnel for the loan and insurance flow" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Nobody was saying no. Nobody was seeing it.</h2><div class="act-text"><p>I expected to find people rejecting the insurance. Instead, 25 Hotjar recordings showed people not noticing it at all: configure the loan, then Continue, Continue, Continue until the money arrives.</p><p>Only 4.16% left on the insurance screen, and a survey of 878 users confirmed it wasn’t scaring anyone off.</p></div><figure><img class="shot" src="img/6c251825e6.jpg" alt="Loan flow screens reviewed in Hotjar recordings" loading="lazy"><figcaption>The flow as people lived it.</figcaption></figure></section><section class="act"><p class="act-label">What I did</p><h2>If people aren’t looking, meet them where they are</h2><div class="act-text"><p>We designed a digital nudge right at the moment people skipped: a clear “You’re not protected”, an easy way to learn more, and a real choice to say yes or no.</p><p>Fifty users and five experiments later, the third version was the one.</p></div><figure><img class="shot" src="img/37658f7e84.jpg" alt="Three iterations of the nudge screen" loading="lazy"><figcaption>Three iterations, from hidden link to clear decision.</figcaption></figure></section><section class="act"><p class="act-label">Inside the research</p><h2>Three signals, one answer</h2><div class="act-text"><ul><li><b>Behavior flow:</b> 49.1% dropped off before the insurance screen, and only 4.16% on it. 95% of visits weren’t affected by the offer.</li><li><b>Abandonment survey, 878 users:</b> two out of three simply didn’t need the insurance. It wasn’t blocking anyone’s loan.</li><li><b>25 Hotjar recordings:</b> the job to be done happened while configuring the loan. The insurance, contract and OTP screens went almost unnoticed.</li></ul></div><figure><img class="shot" src="img/78f1d7f788.jpg" alt="Abandonment analysis by step in the flow" loading="lazy"><figcaption>Where people actually left.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>Sales more than doubled</h2><div class="act-text"><div class="stats"><div class="stat"><b>24 → 52</b><span>average daily insurance sales</span></div><div class="stat"><b>5% → 10.2%</b><span>offer effectiveness</span></div></div><p class='after'>And because it’s a nudge, not a trap, people still chose. More of them just chose to be covered.</p></div><figure><img class="shot" src="img/a7b4d51385.jpg" alt="Preliminary results without and with the nudge" loading="lazy"></figure></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#work"><span>Back to</span>All work</a><a class="r" href="#pichincha-insurance"><span>Next</span>Insurance hub</a></nav>
+</div></div>
+<div class="view" id="v-pichincha-insurance">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance" aria-current="page">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Product design</span></div><h1>An insurance hub inside a banking app</h1><p class="lead">The app already sold one insurance. The bank wanted a second one, and a home for both.</p></header>
+<div class="summary"><div><span>The challenge</span><p>Add a second insurance to the app, and give both a home.</p></div><div><span>My part</span><p>Research, product design and content.</p></div><div><span>The result</span><p>A tested hub, and +37% policy sales across the portfolio in 2025.</p></div></div>
+<div class="meta"><div><span>Company</span><b>NOVA / Banco Pichincha</b></div><div><span>Platform</span><b>Mobile banking app</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/b32fc5b41e.jpg" alt="Final screens with tabs, banner and product cards" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>One door, two jobs</h2><div class="act-text"><p>Where would you look for insurance in your banking app? 80% said “Requests”. But 6 in 10 expected their policy to live in “My products”.</p><p>The catch: we could only rename the entry point. Everything behind it was ours to design.</p></div><figure><img class="shot" src="img/6301e8fcff.jpg" alt="Entry point research findings in the app" loading="lazy"></figure></section><section class="act"><p class="act-label">What I did</p><h2>Four rounds, 40 people, a few ideas let go</h2><div class="act-text"><p>Guerrilla tests first, then interviews with Figma prototypes. Some of my favorite ideas didn’t survive, which is exactly what testing is for.</p><p>People wanted coverage and price on the card before tapping, and icons mattered far less than we thought.</p></div><figure><img class="shot" src="img/40d097318d.jpg" alt="Card anatomy: icon, name, badge, description, price, button" loading="lazy"><figcaption>What a card needs so people can decide.</figcaption></figure></section><section class="act"><p class="act-label">Inside the process</p><h2>What we tested, and what didn’t hold</h2><div class="act-text"><p>We set a clear bar: a hypothesis held only if 80% of participants confirmed it.</p><ul><li><b>Price on the card:</b> 85% needed it to explore. Held.</li><li><b>Icons to tell products apart:</b> 90% said yes. Held.</li><li><b>Icons to drive the tap:</b> 70% ranked them last. Didn’t hold.</li><li><b>Enough information on the first card:</b> 80% missed coverage details. Didn’t hold, so the card grew.</li><li><b>A warm, direct banner:</b> 80% preferred it over a sales pitch. Held.</li></ul></div><figure><img class="shot" src="img/cc65783118.jpg" alt="Hypotheses tested for cards, icons and banner" loading="lazy"><figcaption>Hypotheses and results by component.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>A hub people could decide with</h2><div class="act-text"><div class="stats"><div class="stat"><b>85%</b><span>needed the price to explore</span></div><div class="stat"><b>+37%</b><span>policy sales in 2025 across the portfolio</span></div><div class="stat"><b>USD 458K+</b><span>from digital self-service</span></div></div></div></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#pichincha-behavior"><span>Previous</span>The little nudge</a><a class="r" href="#pichincha-meta"><span>Next</span>Everyday moments</a></nav>
+</div></div>
+<div class="view" id="v-pichincha-meta">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta" aria-current="page">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Content strategy</span></div><h1>Everyday moments, not tragedies</h1><p class="lead">A health plan sold on Facebook and Instagram, without fear. Real people in ordinary moments, so you see yourself before you see the price.</p></header>
+<div class="summary"><div><span>The challenge</span><p>Sell a health plan on Meta without leaning on fear, accidents or hospitals.</p></div><div><span>My part</span><p>Content strategy, copy and design. Media ran the campaigns.</p></div><div><span>The result</span><p>A content system for the whole funnel, A/B image tests, and proof that a clear message sells more.</p></div></div>
+<div class="meta"><div><span>Company</span><b>NOVA / Banco Pichincha</b></div><div><span>Product</span><b>Plan de Salud by Confiamed, and life insurance</b></div><div><span>Channels</span><b>Facebook and Instagram, 2025</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/meta-picnic.jpg" alt="Plan de Salud ad: a family picnic, in three formats" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Insurance ads love fear. People scroll past it.</h2><div class="act-text"><p>Accidents, hospitals, worst-case scenarios. Most insurance ads try to scare you into buying, and most people either scroll past or feel manipulated.</p><p>We wanted the opposite: an ad you’d recognize yourself in.</p></div></section>
+<section class="act"><p class="act-label">What I did</p><h2>Characters you’d swear you know</h2><div class="act-text"><p>I built the content around everyday moments: a family hike, a picnic, a check-up at home, a photographer on a busy day, a shoot on a cobblestone street. Families for the family plan, independent workers for the individual one.</p><p>The strategy weighed as much as the tests: the image makes you feel identified, and the copy turns that feeling into a reason to act.</p></div>
+<div class="gallery"><figure><img class="shot" src="img/meta-adventure.jpg" alt="Family plan ad: mother and kids on a hike" loading="lazy"><figcaption>Family plan · “Every adventure deserves backup.”</figcaption></figure><figure><img class="shot" src="img/meta-doctor.jpg" alt="Family plan ad: a home check-up with the doctor" loading="lazy"><figcaption>Family plan · “The medical backup your family needs.”</figcaption></figure><figure><img class="shot" src="img/meta-studio.jpg" alt="Individual plan ad: a photographer in her studio" loading="lazy"><figcaption>Individual plan · “When everything depends on you.”</figcaption></figure><figure><img class="shot" src="img/meta-street.jpg" alt="Individual plan ad: a photographer on a cobblestone street" loading="lazy"><figcaption>Individual plan · “Backup to keep your own pace.”</figcaption></figure></div></section>
+<section class="act"><p class="act-label">Inside the system</p><h2>Every piece, ready to hand off</h2><div class="act-text"><p>Each ad came in three formats (1080×1080, 1080×1920 and 1920×1080), with three to five headlines written for Meta’s 27-character limit, five primary texts of 90 to 100 characters, and a description. The media team took it from there.</p></div><figure><img class="shot" src="img/meta-handoff.jpg" alt="Lead campaign ad in three formats next to its copy handoff" loading="lazy"><figcaption>A lead campaign, “Request a call”, with its copy handoff.</figcaption></figure></section>
+<section class="act"><p class="act-label">The A/B test</p><h2>How soon after an emergency is the right moment?</h2><div class="act-text"><p>Same copy, same price, two moments. In A, she’s still at the clinic, in a wheelchair with a nurse beside her. In B, she’s recovering at home, laughing with a friend.</p><p>The question behind it: when does it feel natural to think about being covered? Close enough to the emergency to feel relevant, far enough that it doesn’t feel like tragedy. And how much can an image and a line of copy nudge that decision?</p></div><figure><img class="shot" src="img/meta-abtest.jpg" alt="A/B image test: clinic versus home recovery" loading="lazy"><figcaption>Variant A, at the clinic. Variant B, recovering at home.</figcaption></figure></section>
+<section class="act"><p class="act-label">What changed</p><h2>Clarity sells</h2><div class="act-text"><p>In a related test for life insurance, a message focused only on life outperformed one that mixed in health benefits:</p></div><div class="stats"><div class="stat"><b>0.59%</b><span>conversion, focused message</span></div><div class="stat"><b>0.17%</b><span>conversion, mixed message</span></div><div class="stat"><b>3×</b><span>lower cost per acquisition</span></div></div><p class="after">Saying less, and saying it to the right person, sold more.</p></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#pichincha-insurance"><span>Previous</span>Insurance hub</a><a class="r" href="#toyota"><span>Next</span>Toyota del Perú</a></nav>
+</div></div>
+<div class="view" id="v-toyota">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota" aria-current="page">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Automotive</span><span class="tag alt">Research and IA</span></div><h1>A website built around how people choose a car</h1><p class="lead">Toyota del Perú needed a new website. Before drawing a single box, we asked drivers how they actually choose a car.</p></header>
+<div class="summary"><div><span>The challenge</span><p>Organize a new website around how people actually choose a car.</p></div><div><span>My part</span><p>UX research and information architecture.</p></div><div><span>The result</span><p>A new site map and actions for every stage of the journey.</p></div></div>
+<div class="meta"><div><span>Client</span><b>Toyota del Perú</b></div><div><span>Agency</span><b>Ariadna Communications Group</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/10f8a3d4c5.jpg" alt="New Toyota del Perú website, experience design" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Seven reasons to visit, zero organized around them</h2><div class="act-text"><p>People come to a car brand to buy, compare, renew, care for, improve, maintain or simply learn. The old site was organized around the brand, not around any of them.</p></div><figure><img class="shot" src="img/8cb8bbd662.jpg" alt="Goals the website must support" loading="lazy"></figure></section><section class="act"><p class="act-label">What I did</p><h2>Listen first, draw later</h2><div class="act-text"><p>Three workshops with Toyota’s team, heatmaps on the live site, a survey with 56 drivers and a card sorting with 21 people.</p><p>The big surprise: someone renewing their car and someone buying their first one search in completely different ways.</p></div><figure><img class="shot" src="img/a7afd976a1.jpg" alt="Card sorting similarity matrix" loading="lazy"><figcaption>Where people agreed, and where they didn’t.</figcaption></figure></section><section class="act"><p class="act-label">Inside the research</p><h2>What drivers told us</h2><div class="act-text"><ul><li><b>Three workshops, 6 hours, 11 people</b> from Toyota to align business goals, user needs and UX goals.</li><li><b>Renewing drivers</b> go straight to what they need: online research, YouTube reviews, then the dealer to validate.</li><li><b>First-time buyers</b> explore more: the brand’s site and Google first, then seeing the car live and asking family and friends.</li><li><b>Innovation</b> was the most valued brand attribute, closely tied to technology and safety.</li></ul></div><figure><img class="shot" src="img/717d1c107c.jpg" alt="What people do when looking for a vehicle" loading="lazy"><figcaption>How people search, with and without a car today.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>A site map that thinks like a driver</h2><div class="act-text"><p>A new architecture and clear actions for each moment of the journey, from online research to the dealership.</p></div><figure><img class="shot" src="img/69e1ffa33a.jpg" alt="Proposed site map" loading="lazy"></figure></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#pichincha-meta"><span>Previous</span>Everyday moments</a><a class="r" href="#bgr"><span>Next</span>BGR</a></nav>
+</div></div>
+<div class="view" id="v-bgr">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr" aria-current="page">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Banking</span><span class="tag alt">Research, UX and UI</span></div><h1>A bank website redesigned with its people</h1><p class="lead">137K visits a month, more than 50 usability errors and almost no leads. Banco General Rumiñahui’s website was busy, but not working.</p></header>
+<div class="summary"><div><span>The challenge</span><p>137K visits a month, 50+ usability errors and very few leads.</p></div><div><span>My part</span><p>Research, UX and the style guide.</p></div><div><span>The result</span><p>A portal organized around what people come to do.</p></div></div>
+<div class="meta"><div><span>Client</span><b>Banco General Rumiñahui</b></div><div><span>Agency</span><b>Ariadna Communications Group</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/27f3b4743e.jpg" alt="New BGR website on desktop, laptop and mobile" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Plenty of visits, very little action</h2><div class="act-text"><div class="stats"><div class="stat"><b>50+</b><span>usability errors</span></div><div class="stat"><b>26.55%</b><span>bounce rate</span></div></div></div><figure><img class="shot" src="img/4b20201248.jpg" alt="Why we decided to improve the BGR website" loading="lazy"></figure></section><section class="act"><p class="act-label">What I did</p><h2>Seven rounds, inside out</h2><div class="act-text"><p>You can’t redesign a bank’s website from the outside, so we did it with them: seven rounds with product heads, marketing and management.</p><p>We also ran a card sorting with 17 customers, military, civilian and business clients alike, and a usability test before a single screen was final.</p></div><figure><img class="shot" src="img/be06497a2e.jpg" alt="First four rounds of co-creation" loading="lazy"></figure></section><section class="act"><p class="act-label">Inside the process</p><h2>Seven rounds with the bank</h2><div class="act-text"><ul><li>Information architecture workshop with 11 product heads.</li><li>Card sorting with 11 product heads, 3 internal and 17 external clients.</li><li>Usability test of structure and navigation, Krug method.</li><li>First visual sketches with 25 product heads and marketing.</li><li>Content validation with every area.</li><li>Visual and content review.</li><li>Brand validation with management.</li></ul></div><figure><img class="shot" src="img/3c7456fc84.jpg" alt="BGR UI style guide: typography, colors, buttons" loading="lazy"><figcaption>Part of the style guide.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>Built around what people come to do</h2><div class="act-text"><p>Get a loan, a card, grow your money or open an account. Plus a style guide, so it stays that way.</p></div><figure><img class="shot" src="img/b9c18a6b87.jpg" alt="New BGR portal on desktop and mobile" loading="lazy"></figure></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#toyota"><span>Previous</span>Toyota del Perú</a><a class="r" href="#lutz-law"><span>Next</span>Lutz Law</a></nav>
+</div></div>
+<div class="view" id="v-lutz-law">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law" aria-current="page">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Legal services</span><span class="tag alt">Research and WordPress</span></div><h1>Would strangers hire this law firm online?</h1><p class="lead">A law firm in Hamilton, Canada, with clients who love it. The question was whether strangers would hire them online.</p></header>
+<div class="summary"><div><span>The challenge</span><p>Turn referral-only trust into trust strangers can find online.</p></div><div><span>My part</span><p>Research, information architecture and the WordPress build.</p></div><div><span>The result</span><p>lutzlaw.ca, live since 2025.</p></div></div>
+<div class="meta"><div><span>Client</span><b>Lutz Law, Hamilton, Canada</b></div><div><span>Live site</span><b><a href="https://lutzlaw.ca/" target="_blank" rel="noopener">lutzlaw.ca</a></b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/4a9a63cf32.jpg" alt="What people value most when choosing a law firm" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Loved by clients, invisible to strangers</h2><div class="act-text"><p>Their clients gave them an NPS of 100. Perfect. But they all came through referrals.</p><p>New people started on Google and wanted proof before picking up the phone: testimonials, track record, real faces.</p></div><figure><img class="shot" src="img/4d71ace1d4.jpg" alt="First steps when looking for legal services" loading="lazy"></figure></section><section class="act"><p class="act-label">What I did</p><h2>From interviews to a live site</h2><div class="act-text"><p>I talked to 5 clients and 15 non-clients, turned what I learned into the site’s architecture, and then built it myself in WordPress from the visual design I received.</p></div></section><section class="act"><p class="act-label">Inside the research</p><h2>What strangers need before they call</h2><div class="act-text"><ul><li>Recommendations, testimonials and track record ranked in the top 3 for clients and non-clients alike.</li><li>On a scale of 1 to 10, the likelihood of choosing a fully online legal service was 5.3.</li><li>People wanted online convenience, but also to feel heard, get clear explanations and know their data was safe.</li><li>The recommendation: a hybrid service, human where it matters and automated where it helps.</li></ul></div><figure><img class="shot" src="img/8f4a683648.jpg" alt="Likelihood of choosing a fully online legal service and recommended actions" loading="lazy"><figcaption>Recommended actions.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>Online, but human</h2><div class="act-text"><p>lutzlaw.ca now leads with what strangers were looking for: 30+ years of experience, client testimonials, clear practice areas and a direct line to a real person.</p></div><p><a class="btn ghost" href="https://lutzlaw.ca/" target="_blank" rel="noopener">Visit lutzlaw.ca</a></p></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#bgr"><span>Previous</span>BGR</a><a class="r" href="#telefonica"><span>Next</span>Telefónica</a></nav>
+</div></div>
+<div class="view" id="v-telefonica">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica" aria-current="page">Telefónica</a><a href="#usfq">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Telecom</span><span class="tag alt">UX, UI and front-end</span></div><h1>Two new mobile brands, one self-service system</h1><p class="lead">Telefónica launched Akimóvil and Maxiplus, and their customers needed to manage their lines on their own.</p></header>
+<div class="summary"><div><span>The challenge</span><p>Self-service for two brand-new mobile brands.</p></div><div><span>My part</span><p>UX, UI and front-end development.</p></div><div><span>The result</span><p>One component framework with a style guide per brand.</p></div></div>
+<div class="meta"><div><span>Client</span><b>Telefónica</b></div><div><span>Agency</span><b>Ariadna Communications Group</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/1cdf379227.jpg" alt="Akimóvil and Maxiplus self-service portals on tablets" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>Same tasks, two personalities</h2><div class="act-text"><p>Both brands needed exactly the same self-service tasks, each with its own look. Building everything twice would have been slow and expensive.</p></div></section><section class="act"><p class="act-label">What I did</p><h2>Design and build in one loop</h2><div class="act-text"><p>I designed the architecture and wireframes, worked on the interface, and helped build a shared front-end framework. My developer past came in handy.</p></div><figure><img class="shot" src="img/644f990143.jpg" alt="Information architecture of the portal" loading="lazy"></figure></section><section class="act"><p class="act-label">Inside the process</p><h2>Three phases, one team</h2><div class="act-text"><p>UX design first, with flows and architecture. Then UI in stages. Then front-end development of a shared framework, with reusable components and a style guide for each brand.</p></div><figure><img class="shot" src="img/3a8883c637.jpg" alt="Wireframes for desktop and mobile" loading="lazy"><figcaption>Wireframes.</figcaption></figure><figure><img class="shot" src="img/6b0ac499f3.jpg" alt="Front-end framework style guides for Akimóvil and Maxiplus" loading="lazy"><figcaption>Framework style guides for each brand.</figcaption></figure></section><section class="act"><p class="act-label">What changed</p><h2>One system, two brands</h2><div class="act-text"><p>One set of components, two style guides. Each brand looks like itself, and both work the same way.</p></div><figure><img class="shot" src="img/1eceb9e056.jpg" alt="Interface design for the self-service portals" loading="lazy"></figure></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#lutz-law"><span>Previous</span>Lutz Law</a><a class="r" href="#usfq"><span>Next</span>USFQ Business School</a></nav>
+</div></div>
+<div class="view" id="v-usfq">
+<nav class="ptabs" aria-label="Projects"><div class="wrap ptabs-in"><a href="#pichincha-behavior">The little nudge</a><a href="#pichincha-insurance">Insurance hub</a><a href="#pichincha-meta">Everyday moments</a><a href="#toyota">Toyota del Perú</a><a href="#bgr">BGR</a><a href="#lutz-law">Lutz Law</a><a href="#telefonica">Telefónica</a><a href="#usfq" aria-current="page">USFQ Business School</a></div></nav>
+<div class="wrap">
+<header class="case-head"><div class="tags"><span class="tag">Education</span><span class="tag alt">IA and conversion</span></div><h1>An MBA page that invites you to apply</h1><p class="lead">USFQ’s MBA page had everything a future student needed. You just had to dig for it.</p></header>
+<div class="summary"><div><span>The challenge</span><p>A long MBA page that made applying hard.</p></div><div><span>My part</span><p>Content analysis, IA, wireframes and prototype.</p></div><div><span>The result</span><p>A page where applying is the obvious next step.</p></div></div>
+<div class="meta"><div><span>Client</span><b>USFQ Business School</b></div><div><span>Platforms</span><b>Desktop and mobile</b></div></div>
+<figure class="hero-fig"><img class="shot" src="img/ed3e192a4f.jpg" alt="New MBA page with application form" loading="lazy"></figure>
+<section class="act"><p class="act-label">The problem</p><h2>A long wall of information</h2><div class="act-text"><p>Duration, schedule, dates, requirements and how to apply, all buried in one long page.</p></div><figure><img class="shot" src="img/b41048d549.jpg" alt="The original MBA page" loading="lazy"><figcaption>Before.</figcaption></figure></section><section class="act"><p class="act-label">What I did</p><h2>Key facts first, form always within reach</h2><div class="act-text"><p>I analyzed the content, rebuilt the architecture, looked at how other schools do it, and designed wireframes and a clickable prototype.</p></div><figure><img class="shot" src="img/f7e329eba4.jpg" alt="Desktop wireframes with key facts and application form" loading="lazy"></figure><p><a class="btn ghost" href="https://marvelapp.com/prototype/40ia606" target="_blank" rel="noopener">Open the prototype</a></p></section><section class="act"><p class="act-label">Inside the process</p><h2>How the page was rebuilt</h2><div class="act-text"><ul><li>Content audit of the existing page, desktop and mobile.</li><li>New information architecture with the facts people ask first: duration, format, start date and deadline.</li><li>Benchmark of other business schools.</li><li>Wireframes for desktop and mobile, then a clickable prototype in Marvel.</li></ul></div></section><section class="act"><p class="act-label">What changed</p><h2>“Apply” became the obvious next step</h2><div class="act-text"><p>The new page answers the big questions in seconds, adds social proof from alumni, and keeps the application form one glance away.</p></div></section>
+<div class="cta-band"><p>Want to hear the parts that didn’t fit here?</p><a class="btn" href="#contact">Let’s talk</a></div>
+<nav class="next" aria-label="More work"><a href="#telefonica"><span>Previous</span>Telefónica</a><a class="r" href="#work"><span>Back to</span>All work</a></nav>
+</div></div>
+</main>
+<footer><div class="wrap foot"><span>Alicia Villarreal Villacrés</span><div class="contact"><a href="mailto:andrea.villarreal.v@gmail.com">Email</a><a href="#cv">CV</a><a href="https://www.linkedin.com/in/aavv7/" target="_blank" rel="noopener">Connect on LinkedIn</a></div></div></footer>
+<script>
+(function(){
+ var views=["about","cv","contact","pichincha-behavior","pichincha-insurance","pichincha-meta","toyota","bgr","lutz-law","telefonica","usfq"];
+ function show(){
+  var h=(location.hash||"").replace("#","");
+  var name=views.indexOf(h)>-1?h:"home";
+  document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("on",v.id==="v-"+name)});
+  var k=(name==="about"||name==="contact"||name==="cv")?name:"home";
+  document.querySelectorAll("nav.main a").forEach(function(a){a.getAttribute("data-nav")===k?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  if(h==="work"){var w=document.getElementById("work");if(w)w.scrollIntoView();} else window.scrollTo(0,0);
+ }
+ if(location.hash==="#thanks"){ history.replaceState(null,"",location.pathname+"#contact"); setTimeout(function(){var n=document.getElementById("form-note"); if(n) n.textContent="Thank you! Your message arrived. I’ll get back to you soon.";},50);}
+ window.addEventListener("hashchange",show); show();
+ var f=document.getElementById("contact-form");
+ var nx=document.querySelector('input[name="_next"]'); if(nx) nx.value=location.href.split("#")[0]+"#thanks";
+ if(false) f.addEventListener("submit",function(e){
+  e.preventDefault();
+  var d=new FormData(f), note=document.getElementById("form-note");
+  if(!d.get("name")||!d.get("email")||!d.get("message")){note.textContent="Please add your name, email and a short message.";return;}
+  var subject=encodeURIComponent(d.get("topic")+" · from "+d.get("name"));
+  var body=encodeURIComponent(d.get("message")+"\n\n"+d.get("name")+" · "+d.get("email"));
+  var url="mailto:andrea.villarreal.v@gmail.com?subject="+subject+"&body="+body; var w=window.open(url,"_blank"); if(!w) window.location.href=url;
+  note.textContent="Your email app should open now. If it doesn’t, write to andrea.villarreal.v@gmail.com.";
+ });
+})();
+</script>
+</body></html>
